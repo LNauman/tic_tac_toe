@@ -18,44 +18,10 @@ describe Game do
       @game.move('x', 4)
       expect(@game.get_cell_at(4)).to eq 'x'
     end
-    it 'uses proper casing when making a move' do
-      @game.move('X', 4)
-      expect(@game.get_cell_at(4)).to eq 'x'
-    end
   end
 
-  context "display board" do
-    it 'displays a board with the proper moves inserted' do
-      @game.move('x', 4)
-      expect(@game.display_board).to include "x"
-    end
+  it 'uses proper casing when making a move' do
   end
-
-  context "second players turn" do
-  end
-
-  context "second player makes move" do
-    it "rejects a move to an already occupied cell" do
-      @game.move('x', 4)
-      expect{@game.move('y', 4)}.to raise_error(InvalidMoveError)
-    end
-  end
-
-  context "game over" do
-    it "knows it is over" do
-      @game.move('x', 0)
-      @game.move('x', 1)
-      @game.move('x', 2)
-      expect(@game.is_over?).to eq true
-    end
-
-    it "knows the winner" do
-    end
-
-    it "knows if there was a tie" do
-    end
-  end
-
 
   #it 'is empty at start' do
   #  expect(@board.join("").empty?).to be true

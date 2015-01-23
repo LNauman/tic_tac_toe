@@ -16,6 +16,15 @@ class Game
     @current_player = ""
   end
 
+  def get_cell_at(spot)
+    @board[spot]
+  end
+
+  def move(player, spot)
+   raise InvalidMoveError.new unless @board[spot].empty?
+   @board[spot] = player.downcase
+  end
+
   def play
     @current_player = @player1
     display_board
@@ -26,24 +35,13 @@ class Game
   end
 
   def display_board
-    puts "   #{@board[0]} |    #{@board[1]} |    #{@board[2]}"
-    puts "_________________"
-    puts "   #{@board[3]} |    #{@board[4]} |    #{@board[5]}"
-    puts "_________________"
-    puts "   #{@board[6]} |    #{@board[7]} |    #{@board[8]}"
-  end
-
-  def update_board(player, spot)
-    if @board[spot - 1].empty?
-      if player == @player1
-        @board[spot - 1] = 'x'
-      elsif player == @player2
-        @board[spot - 1] = 'o'
-      end
-    else
-      puts "That spot is already taken, try again!"
-    end
-    display_board
+    <<-eos
+       #{@board[0]} |    #{@board[1]} |    #{@board[2]}
+    _________________
+       #{@board[3]} |    #{@board[4]} |    #{@board[5]}
+    _________________
+       #{@board[6]} |    #{@board[7]} |    #{@board[8]}
+    eos
   end
 
   def switch_turns
